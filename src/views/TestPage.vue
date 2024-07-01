@@ -7,6 +7,9 @@
     <ion-item>
       Hasil : {{ name }}
     </ion-item>
+    <ion-item>
+      <ion-button @click="addCounter">Add</ion-button> Counter : {{ counter }} <ion-button @click="removeCounter">Remove</ion-button>
+    </ion-item>
   </ion-list>
 </template>
 
@@ -15,9 +18,20 @@
   import {ref} from 'vue';
 
   const name = ref('Test');
+  const counter = ref(0);
 
   function changeName(evt: any) {
     console.log(evt)
     name.value = evt.target.value;
+  }
+
+  function addCounter() {
+    counter.value++;
+  }
+
+  function removeCounter() {
+    if(counter.value-1 >= 0){
+      counter.value--;
+    }
   }
 </script>
