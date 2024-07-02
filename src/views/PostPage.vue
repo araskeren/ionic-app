@@ -1,9 +1,12 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>List All Post</ion-title>
-      </ion-toolbar>
+    <ion-header :translucent="true">
+        <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>List Post</ion-title>
+        </ion-toolbar>
     </ion-header>
     <ion-content color="light">
         <list-component/>
@@ -18,6 +21,8 @@
       IonTitle,
       IonToolbar,
       IonPage,
+      IonButtons,
+      IonMenuButton
     } from '@ionic/vue';
     import ListComponent from '../components/page/ListComponent.vue';
 </script>

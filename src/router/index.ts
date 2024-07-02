@@ -19,6 +19,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('@/views/TestPage.vue')
   },
   {
+    path: '/simple-calculator',
+    component: () => import ('@/views/SimpleCalculatorPage.vue')
+  },
+  {
     path: '/folder/:id',
     component: () => import ('@/views/FolderPage.vue')
   }

@@ -26,6 +26,7 @@
       IonList,
       IonNote,
       IonText,
+      IonChip
     } from '@ionic/vue';
     import { chevronForward } from 'ionicons/icons';
     import {ref} from 'vue';
