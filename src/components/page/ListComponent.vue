@@ -1,6 +1,6 @@
 <template>
     <ion-list :inset="true">
-        <ion-item :button="true" v-for="post in listPost" key="post.id">
+        <ion-item :button="true" v-for="post in listPost" key="post.id" :router-link="`/post/${post.id}`">
             <div class="unread-indicator-wrapper" slot="start">
             <div class="unread-indicator"></div>
             </div>
@@ -19,6 +19,7 @@
     </ion-list>
 </template>
 <script setup lang="ts">
+    import { Post } from '@/interface/post';
     import {
       IonIcon,
       IonItem,
@@ -30,20 +31,6 @@
     } from '@ionic/vue';
     import { chevronForward } from 'ionicons/icons';
     import {ref} from 'vue';
-    interface Post {
-        id: number
-        title: string
-        body: string
-        tags: string[]
-        reactions: Reactions
-        views: number
-        userId: number
-    }
-
-    interface Reactions {
-        likes: number
-        dislikes: number
-    }
 
     const listPost = ref([] as Post[]);
 

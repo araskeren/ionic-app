@@ -24,5 +24,5 @@
       IonButtons,
       IonMenuButton
     } from '@ionic/vue';
-    import ListComponent from '../components/page/ListComponent.vue';
+    import ListComponent from '@/components/page/ListComponent.vue';
 </script>
