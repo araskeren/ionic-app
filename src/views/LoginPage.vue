@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
     import { User } from '@/interface/user';
+import { useAuthStore } from '@/store/auth';
     import { IonPage,IonContent, IonCard, IonCardHeader, IonCardTitle,IonCardContent, IonItem, IonLabel, IonInput,IonButton,IonToast } from '@ionic/vue';
     import {ref} from 'vue'
     const email = ref('emilys')
@@ -33,6 +34,7 @@
     const user = ref({} as User)
     const isOpen = ref(false);
     const message = ref('Login Success');
+    const AUTH = useAuthStore()
     const setOpen = (state: boolean) => {
         isOpen.value = state;
     };
@@ -55,6 +57,7 @@
                 message.value = 'Login Success,Welcome '+user.value.firstName+' '+user.value.lastName
                 localStorage.setItem('user',JSON.stringify(user.value))
                 setOpen(true)
+                AUTH.login()
                 window.location.href = '/home'
             }
         });

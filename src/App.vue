@@ -1,11 +1,11 @@
 <template>
   <ion-app>
     <ion-split-pane content-id="main-content">
-      <ion-menu content-id="main-content" type="overlay" v-if="isLogin">
+      <ion-menu content-id="main-content" type="overlay" v-if="AUTH.isLoggedIn">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Hi, {{ name }}</ion-list-header>
-            <ion-note>{{ email}}</ion-note>
+            <ion-list-header>Hi, {{ AUTH.user?.firstName + ' ' + AUTH.user?.lastName }}</ion-list-header>
+            <ion-note>{{ AUTH.user?.email }}</ion-note>
 
             <ion-menu-toggle :auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" :detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -45,6 +45,7 @@ import {
 } from 'ionicons/icons';
 import { User } from './interface/user';
 import { useRoute } from 'vue-router';
+import { useAuthStore } from './store/auth';
 const route = useRoute();
 
 const selectedIndex = ref(0);
@@ -82,25 +83,7 @@ const appPages = [
   }
 ];
 
-console.log(currentPath)
-watch(currentPath, (newPath) => {
-  // Log perubahan pada currentPath
-  console.log('currentPath changed:', newPath);
-  // Lakukan tindakan lain sesuai kebutuhan
-});
-
-
-checkLogin()
-
-function checkLogin () {
-  let user = localStorage.getItem('user')
-  if(user) {
-    let _user:User = JSON.parse(user)
-    name.value = _user?.firstName
-    email.value = _user?.email
-    isLogin.value = true
-  }
-}
+const AUTH = useAuthStore()
 
 const path = window.location.pathname.split('folder/')[1];
 if (path !== undefined) {
