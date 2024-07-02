@@ -5,7 +5,7 @@
           <ion-buttons slot="start">
             <ion-menu-button color="primary"></ion-menu-button>
           </ion-buttons>
-          <ion-title>{{ post.title }}</ion-title>
+          <ion-title>Detail Post</ion-title>
           <ion-buttons slot="end">
             <ion-button :router-link="`/post/${post.id}/edit`">Edit</ion-button>
             <ion-button :router-link="`/post`">Kembali</ion-button>
@@ -16,7 +16,7 @@
       <ion-content :fullscreen="true">
         <ion-header collapse="condense">
           <ion-toolbar>
-            <ion-title size="large">{{ post.title }}</ion-title>
+            <ion-title size="large">Detail Post</ion-title>
           </ion-toolbar>
         </ion-header>
         <detail-component :post="post" />

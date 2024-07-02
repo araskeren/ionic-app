@@ -1,6 +1,7 @@
 <template>
     <ion-card>
         <ion-card-header>
+            <ion-card-title>{{ props?.post?.title }}</ion-card-title>
             <ion-card-subtitle>
                 {{ props?.post?.body }}
             </ion-card-subtitle>
