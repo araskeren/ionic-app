@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
         <ion-title>Test Page</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -27,6 +30,8 @@
       IonHeader,
       IonTitle,
       IonToolbar,
+      IonMenuButton,
+      IonButtons,
       IonPage,IonInput, IonItem,IonButton, IonList } from '@ionic/vue';
   import {ref} from 'vue';
 
