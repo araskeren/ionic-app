@@ -12,7 +12,12 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/home',
-    component: () => import ('@/views/HomePage.vue')
+    component: () => import ('@/views/HomePage.vue'),
+    beforeEnter: (to, from, next) => {
+      if(checkLogin()){
+        next()
+      }
+    }
   },
   {
     path: '/post',
@@ -33,6 +38,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/folder/:id',
     component: () => import ('@/views/FolderPage.vue')
+  },
+  {
+    path: '/logout',
+    component: () => {
+      localStorage.removeItem('user')
+      router.push('/login')
+    }
   }
 ]
 
@@ -40,5 +52,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
+
+const checkLogin = ():boolean => {
+  if(!localStorage.getItem('user')){
+    router.push('/login')
+    return false
+  }
+  return true
+}
 
 export default router

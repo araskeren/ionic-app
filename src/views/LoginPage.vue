@@ -53,7 +53,9 @@
             if(res.token) {
                 user.value = res
                 message.value = 'Login Success,Welcome '+user.value.firstName+' '+user.value.lastName
+                localStorage.setItem('user',JSON.stringify(user.value))
                 setOpen(true)
+                window.location.href = '/home'
             }
         });
     }

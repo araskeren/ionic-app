@@ -36,18 +36,23 @@ import {
   IonRouterOutlet,
   IonSplitPane,
 } from '@ionic/vue';
-import { ref } from 'vue';
+import { ref,watch } from 'vue';
 import {
   homeOutline,
   homeSharp,
   newspaperOutline,
   newspaperSharp,
 } from 'ionicons/icons';
+import { User } from './interface/user';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
 const selectedIndex = ref(0);
-const name = "Damis Bachtiar";
-const email = "damis@pusdatin.kemkes.go.id"
-const isLogin = !true;
+const user = ref({} as User);
+const name = ref('');
+const email = ref('')
+const isLogin = ref(false);
+const currentPath = ref(route.path);
 const appPages = [
   {
     title: 'Dashboard',
@@ -70,8 +75,32 @@ const appPages = [
   {
     title: 'Test',
     url: '/test',
+  },
+  {
+    title: 'Logout',
+    url: '/logout'
   }
 ];
+
+console.log(currentPath)
+watch(currentPath, (newPath) => {
+  // Log perubahan pada currentPath
+  console.log('currentPath changed:', newPath);
+  // Lakukan tindakan lain sesuai kebutuhan
+});
+
+
+checkLogin()
+
+function checkLogin () {
+  let user = localStorage.getItem('user')
+  if(user) {
+    let _user:User = JSON.parse(user)
+    name.value = _user?.firstName
+    email.value = _user?.email
+    isLogin.value = true
+  }
+}
 
 const path = window.location.pathname.split('folder/')[1];
 if (path !== undefined) {
