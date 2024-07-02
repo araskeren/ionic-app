@@ -20,13 +20,17 @@
         <ion-item>
           <ion-button @click="addCounter">Add</ion-button> Counter : {{ counter }} <ion-button @click="removeCounter">Remove</ion-button>
         </ion-item>
+        <ion-item>
+          <ion-button @click="counterPinia.increment">Increment</ion-button> Count Using Pinia : {{ counterPinia.count }} <ion-button @click="counterPinia.decrement">Decrement</ion-button>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-  import { IonContent,
+  import { useStore } from '@/store/counter';
+import { IonContent,
       IonHeader,
       IonTitle,
       IonToolbar,
@@ -34,7 +38,8 @@
       IonButtons,
       IonPage,IonInput, IonItem,IonButton, IonList } from '@ionic/vue';
   import {ref} from 'vue';
-
+  
+  const counterPinia = useStore();
   const name = ref('Test');
   const counter = ref(0);
 
