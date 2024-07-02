@@ -1,7 +1,7 @@
 <template>
   <ion-app>
     <ion-split-pane content-id="main-content">
-      <ion-menu content-id="main-content" type="overlay">
+      <ion-menu content-id="main-content" type="overlay" v-if="isLogin">
         <ion-content>
           <ion-list id="inbox-list">
             <ion-list-header>Hi, {{ name }}</ion-list-header>
@@ -47,6 +47,7 @@ import {
 const selectedIndex = ref(0);
 const name = "Damis Bachtiar";
 const email = "damis@pusdatin.kemkes.go.id"
+const isLogin = !true;
 const appPages = [
   {
     title: 'Dashboard',
