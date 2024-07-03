@@ -32,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('@/views/SimpleCalculatorPage.vue')
   },
   {
+    path: '/camera',
+    component: () => import ('@/views/CameraPage.vue')
+  },
+  {
     path: '/folder/:id',
     component: () => import ('@/views/FolderPage.vue')
   },

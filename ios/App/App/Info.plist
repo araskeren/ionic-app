@@ -2,10 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Melihat Usage Description</string>
+	<key>LSApplicationCategoryType</key>
+	<string>Testing Saja</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Mengambil Foto Anda</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Melihat Foto Anda Saja</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>ionic-app</string>
+	<string>ionic-app</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -28,7 +36,9 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string>video-camera</string>
+		<string>location-services</string>
+		<string>accelerometer</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

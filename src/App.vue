@@ -38,6 +38,8 @@ import {
 } from '@ionic/vue';
 import { ref,watch } from 'vue';
 import {
+  cameraOutline,
+  cameraSharp,
   homeOutline,
   homeSharp,
   newspaperOutline,
@@ -72,6 +74,12 @@ const appPages = [
     url: '/simple-calculator',
     iosIcon: newspaperOutline,
     mdIcon: newspaperSharp,
+  },
+  {
+    title: 'Camera',
+    url: '/camera',
+    iosIcon: cameraOutline,
+    mdIcon: cameraSharp,
   },
   {
     title: 'Test',
