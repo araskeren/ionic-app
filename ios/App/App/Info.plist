@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Melihat Lokasi Anda Saat Ini, Boleh Lah Cuy</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Melihat Usage Description</string>
 	<key>LSApplicationCategoryType</key>

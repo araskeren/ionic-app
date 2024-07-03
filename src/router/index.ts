@@ -36,6 +36,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('@/views/CameraPage.vue')
   },
   {
+    path: '/geo-location',
+    component: () => import ('@/views/GeoLocationPage.vue')
+  },
+  {
     path: '/folder/:id',
     component: () => import ('@/views/FolderPage.vue')
   },

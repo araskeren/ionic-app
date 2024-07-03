@@ -42,6 +42,8 @@ import {
   cameraSharp,
   homeOutline,
   homeSharp,
+  locationOutline,
+  locationSharp,
   newspaperOutline,
   newspaperSharp,
 } from 'ionicons/icons';
@@ -80,6 +82,12 @@ const appPages = [
     url: '/camera',
     iosIcon: cameraOutline,
     mdIcon: cameraSharp,
+  },
+  {
+    title: 'Geo Location',
+    url: '/geo-location',
+    iosIcon: locationOutline,
+    mdIcon: locationSharp
   },
   {
     title: 'Test',
