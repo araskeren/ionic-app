@@ -12,6 +12,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('@/views/LoginPage.vue')
   },
   {
+    path: '/register',
+    component: () => import ('@/views/RegisterPage.vue')
+  },
+  {
     path: '/home',
     component: () => import ('@/views/HomePage.vue')
   },
@@ -59,7 +63,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if(to.path === '/login'){
+  if(to.path === '/login' || to.path === '/register'){
     next()
   }else{
     if(checkLogin()){

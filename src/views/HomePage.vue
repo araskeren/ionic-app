@@ -17,7 +17,7 @@
         </ion-header>
   
         <div id="container">
-          <strong class="capitalize">Welcome To Dashboard</strong>
+          <strong class="capitalize">Welcome To Ionic App {{ AUTH.user.displayName }}</strong>
           <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
         </div>
       </ion-content>
@@ -26,6 +26,8 @@
   
   <script setup lang="ts">
   import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+  import { useAuthStore } from '@/store/auth';
+  const AUTH = useAuthStore()
   </script>
   
   <style scoped>

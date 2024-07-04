@@ -4,7 +4,7 @@
       <ion-menu content-id="main-content" type="overlay" v-if="AUTH.isLoggedIn">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Hi, {{ AUTH.user?.firstName + ' ' + AUTH.user?.lastName }}</ion-list-header>
+            <ion-list-header>Hi, {{ AUTH.user?.displayName || 'User' }}</ion-list-header>
             <ion-note>{{ AUTH.user?.email }}</ion-note>
 
             <ion-menu-toggle :auto-hide="false" v-for="(p, i) in appPages" :key="i">
@@ -50,10 +50,11 @@ import {
 import { User } from './interface/user';
 import { useRoute } from 'vue-router';
 import { useAuthStore } from './store/auth';
+import { UserInfo } from 'firebase/auth';
 const route = useRoute();
 
 const selectedIndex = ref(0);
-const user = ref({} as User);
+const user = ref({} as UserInfo);
 const name = ref('');
 const email = ref('')
 const isLogin = ref(false);

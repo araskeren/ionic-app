@@ -8,8 +8,8 @@
                     </ion-card-header>
                     <ion-card-content>
                         <ion-item>
-                            <ion-label position="floating">Username</ion-label>
-                            <ion-input class="ion-margin-top" type="text" required v-model="email"></ion-input>
+                            <ion-label position="floating">Email</ion-label>
+                            <ion-input class="ion-margin-top" type="email" required v-model="email"></ion-input>
                         </ion-item>
                         <ion-item>
                             <ion-label position="floating">Password</ion-label>
@@ -17,6 +17,7 @@
                         </ion-item>
                     </ion-card-content>
                     <ion-button expand="block" @click="doLogin">Login</ion-button>
+                    <ion-button expand="block" :router-link="`/register`">Daftar</ion-button>
                     <ion-toast :is-open="isOpen" @didDismiss="setOpen(false)" :message="message" :duration="5000"></ion-toast>
                 </ion-card>
             </div>
@@ -29,9 +30,10 @@
 import { useAuthStore } from '@/store/auth';
     import { IonPage,IonContent, IonCard, IonCardHeader, IonCardTitle,IonCardContent, IonItem, IonLabel, IonInput,IonButton,IonToast } from '@ionic/vue';
     import {ref} from 'vue'
-    const email = ref('emilys')
+    import {UserInfo} from 'firebase/auth'
+    const email = ref('emilys@mail.com')
     const password = ref('emilyspass')
-    const user = ref({} as User)
+    const user = ref({} as UserInfo)
     const isOpen = ref(false);
     const message = ref('Login Success');
     const AUTH = useAuthStore()
@@ -40,27 +42,18 @@ import { useAuthStore } from '@/store/auth';
     };
 
     function doLogin() {
-        fetch('https://dummyjson.com/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                
-                username: 'emilys',
-                password: 'emilyspass',
-                expiresInMins: 30, // optional, defaults to 60
-            })
+        AUTH.login(email.value, password.value)
+        .then((res: UserInfo) => {
+            message.value = 'Login Success'
+            setOpen(true)
+            window.location.href = '/home'
         })
-        .then(res => res.json())
-        .then(res => {
-            if(res.token) {
-                user.value = res
-                message.value = 'Login Success,Welcome '+user.value.firstName+' '+user.value.lastName
-                localStorage.setItem('user',JSON.stringify(user.value))
-                setOpen(true)
-                AUTH.login()
-                window.location.href = '/home'
-            }
-        });
+        .catch((error) => {
+            const errorCode = error?.code
+            const errorMessage = error?.message
+            message.value = errorMessage
+            isOpen.value = true
+        })
     }
 </script>
 <style scoped>
