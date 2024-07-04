@@ -20,6 +20,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import ('@/views/page/PostPage.vue')
   },
   {
+    path: '/todo',
+    component: () => import ('@/views/TodoPage.vue')
+  },
+  {
     path: '/post/:id',
     component: () => import ('@/views/page/DetailPostPage.vue')
   },

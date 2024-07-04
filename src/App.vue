@@ -72,6 +72,12 @@ const appPages = [
     mdIcon: newspaperSharp,
   },
   {
+    title: 'Todo',
+    url: '/todo',
+    iosIcon: newspaperOutline,
+    mdIcon: newspaperSharp,
+  },
+  {
     title: 'Simple Calculator',
     url: '/simple-calculator',
     iosIcon: newspaperOutline,
