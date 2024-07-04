@@ -1,6 +1,6 @@
 import { User } from '@/interface/user';
 import { defineStore } from 'pinia';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, UserInfo, updateProfile } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, UserInfo, updateProfile,signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth as authFirebase, db } from '@/firebase';
 
 export const useAuthStore = defineStore({
@@ -39,7 +39,21 @@ export const useAuthStore = defineStore({
                 throw error
             }
         },
-        logout() {
+        async loginWithGoogle() {
+            try{
+                await signInWithPopup(authFirebase, new GoogleAuthProvider())
+                .then((userCredential) => {
+                    const user = userCredential.user
+                    this.user = user
+                    this.isLoggedIn = true
+                    localStorage.setItem('user', JSON.stringify(this.user))
+                })
+            }catch(error: any){
+                throw error
+            }
+        },
+        async logout() {
+            await authFirebase.signOut()
             this.isLoggedIn = false
             this.user = {} as UserInfo
             localStorage.removeItem('user')

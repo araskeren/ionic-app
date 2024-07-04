@@ -17,6 +17,7 @@
                         </ion-item>
                     </ion-card-content>
                     <ion-button expand="block" @click="doLogin">Login</ion-button>
+                    <ion-button expand="block" @click="doLoginWithGoogle">Login With Google</ion-button>
                     <ion-button expand="block" :router-link="`/register`">Daftar</ion-button>
                     <ion-toast :is-open="isOpen" @didDismiss="setOpen(false)" :message="message" :duration="5000"></ion-toast>
                 </ion-card>
@@ -43,6 +44,21 @@ import { useAuthStore } from '@/store/auth';
 
     function doLogin() {
         AUTH.login(email.value, password.value)
+        .then((res: UserInfo) => {
+            message.value = 'Login Success'
+            setOpen(true)
+            window.location.href = '/home'
+        })
+        .catch((error) => {
+            const errorCode = error?.code
+            const errorMessage = error?.message
+            message.value = errorMessage
+            isOpen.value = true
+        })
+    }
+
+    function doLoginWithGoogle() {
+        AUTH.loginWithGoogle()
         .then((res: UserInfo) => {
             message.value = 'Login Success'
             setOpen(true)
