@@ -15,7 +15,7 @@ const firebaseConfig = {
   storageBucket: "test-ionic-383b5.appspot.com",
   messagingSenderId: "693903942198",
   appId: "1:693903942198:web:a05b3bab01decf315b6e97",
-  measurementId: "G-9ZNSRX3XCD"
+  measurementId: "G-9ZNSRX3XCD",
 };
 
 // Initialize Firebase
@@ -24,4 +24,4 @@ const db = getFirestore(app);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-export { db, analytics,auth };
+export { db, analytics, auth };
