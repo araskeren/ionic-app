@@ -4,12 +4,31 @@
       <ion-menu content-id="main-content" type="overlay" v-if="AUTH.isLoggedIn">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Hi, {{ AUTH.user?.displayName || 'User' }}</ion-list-header>
+            <ion-list-header
+              >Hi, {{ AUTH.user?.displayName || 'User' }}</ion-list-header
+            >
             <ion-note>{{ AUTH.user?.email }}</ion-note>
 
-            <ion-menu-toggle :auto-hide="false" v-for="(p, i) in appPages" :key="i">
-              <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" :detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-                <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
+            <ion-menu-toggle
+              :auto-hide="false"
+              v-for="(p, i) in appPages"
+              :key="i"
+            >
+              <ion-item
+                @click="selectedIndex = i"
+                router-direction="root"
+                :router-link="p.url"
+                lines="none"
+                :detail="false"
+                class="hydrated"
+                :class="{ selected: selectedIndex === i }"
+              >
+                <ion-icon
+                  aria-hidden="true"
+                  slot="start"
+                  :ios="p.iosIcon"
+                  :md="p.mdIcon"
+                ></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
@@ -36,7 +55,7 @@ import {
   IonRouterOutlet,
   IonSplitPane,
 } from '@ionic/vue';
-import { ref,watch } from 'vue';
+import { ref, watch } from 'vue';
 import {
   cameraOutline,
   cameraSharp,
@@ -56,7 +75,7 @@ const route = useRoute();
 const selectedIndex = ref(0);
 const user = ref({} as UserInfo);
 const name = ref('');
-const email = ref('')
+const email = ref('');
 const isLogin = ref(false);
 const currentPath = ref(route.path);
 const appPages = [
@@ -94,7 +113,7 @@ const appPages = [
     title: 'Geo Location',
     url: '/geo-location',
     iosIcon: locationOutline,
-    mdIcon: locationSharp
+    mdIcon: locationSharp,
   },
   {
     title: 'Test',
@@ -102,15 +121,17 @@ const appPages = [
   },
   {
     title: 'Logout',
-    url: '/logout'
-  }
+    url: '/logout',
+  },
 ];
 
-const AUTH = useAuthStore()
+const AUTH = useAuthStore();
 
 const path = window.location.pathname.split('folder/')[1];
 if (path !== undefined) {
-  selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
+  selectedIndex.value = appPages.findIndex(
+    (page) => page.title.toLowerCase() === path.toLowerCase(),
+  );
 }
 </script>
 

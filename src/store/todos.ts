@@ -23,7 +23,12 @@ export const useTodosStore = defineStore('todos', {
           collection(db, `todos/${AUTH.user.uid}/data`),
         );
         this.todos = query.docs.map((doc) => {
-          return { id: doc.id, text: doc.data().text, completed: doc.data().completed, isEditMode: false };
+          return {
+            id: doc.id,
+            text: doc.data().text,
+            completed: doc.data().completed,
+            isEditMode: false,
+          };
         });
         return this.todos;
       } catch (error) {
@@ -44,22 +49,26 @@ export const useTodosStore = defineStore('todos', {
     },
 
     async toggleTodo(id: string) {
-      try{
+      try {
         const docRef = doc(db, `todos/${AUTH.user.uid}/data`, id);
         await updateDoc(docRef, {
           completed: !this.todos.find((todo) => todo.id === id).completed,
         });
-        this.todos.find((todo) => todo.id === id).completed = !this.todos.find((todo) => todo.id === id).completed
-      }catch(error){
-        console.log(error)
+        this.todos.find((todo) => todo.id === id).completed = !this.todos.find(
+          (todo) => todo.id === id,
+        ).completed;
+      } catch (error) {
+        console.log(error);
       }
     },
 
     async toggleEdit(id: string) {
-      try{
-        this.todos.find((todo) => todo.id === id).isEditMode = !this.todos.find((todo) => todo.id === id).isEditMode
-      }catch(error){
-        console.log(error)
+      try {
+        this.todos.find((todo) => todo.id === id).isEditMode = !this.todos.find(
+          (todo) => todo.id === id,
+        ).isEditMode;
+      } catch (error) {
+        console.log(error);
       }
     },
     async updateTodo(id: string, text: string) {
@@ -69,9 +78,9 @@ export const useTodosStore = defineStore('todos', {
         this.todos.find((todo) => {
           if (todo.id === id) {
             todo.text = text;
-            todo.isEditMode = false
+            todo.isEditMode = false;
           }
-        })
+        });
       } catch (error) {
         console.log('Gagal mengupdate data ', error);
       }

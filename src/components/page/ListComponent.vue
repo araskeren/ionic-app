@@ -1,84 +1,94 @@
 <template>
-    <ion-list :inset="true">
-        <ion-item :button="true" v-for="post in listPost" key="post.id" :router-link="`/post/${post.id}`">
-            <div class="unread-indicator-wrapper" slot="start">
-            <div class="unread-indicator"></div>
-            </div>
-            <ion-label>
-                <strong>{{post.title}}</strong>
-                <ion-text color="medium" class="ion-text-wrap">{{post.body}}</ion-text> <br />
-                <ion-note>
-                    <ion-chip :outline="true" v-for="tag in post.tags">{{tag}}</ion-chip>
-                </ion-note>
-            </ion-label>
-            <div class="metadata-end-wrapper" slot="end">
-                <ion-note color="medium">Viewer : {{ post.views }}</ion-note>
-                <ion-icon color="medium" :icon="chevronForward"></ion-icon>
-            </div>
-        </ion-item>
-    </ion-list>
+  <ion-list :inset="true">
+    <ion-item
+      :button="true"
+      v-for="post in listPost"
+      key="post.id"
+      :router-link="`/post/${post.id}`"
+    >
+      <div class="unread-indicator-wrapper" slot="start">
+        <div class="unread-indicator"></div>
+      </div>
+      <ion-label>
+        <strong>{{ post.title }}</strong>
+        <ion-text color="medium" class="ion-text-wrap">{{
+          post.body
+        }}</ion-text>
+        <br />
+        <ion-note>
+          <ion-chip :outline="true" v-for="tag in post.tags">{{
+            tag
+          }}</ion-chip>
+        </ion-note>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-note color="medium">Viewer : {{ post.views }}</ion-note>
+        <ion-icon color="medium" :icon="chevronForward"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
 </template>
 <script setup lang="ts">
-    import { Post } from '@/interface/post';
-    import {
-      IonIcon,
-      IonItem,
-      IonLabel,
-      IonList,
-      IonNote,
-      IonText,
-      IonChip
-    } from '@ionic/vue';
-    import { chevronForward } from 'ionicons/icons';
-    import {ref} from 'vue';
+import { Post } from '@/interface/post';
+import {
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonNote,
+  IonText,
+  IonChip,
+} from '@ionic/vue';
+import { chevronForward } from 'ionicons/icons';
+import { ref } from 'vue';
 
-    const listPost = ref([] as Post[]);
+const listPost = ref([] as Post[]);
 
-    fetch('https://dummyjson.com/posts?limit=10')
-    .then((res) => res.json())
-    .then((res) => {
-        listPost.value = res.posts
-    })
+fetch('https://dummyjson.com/posts?limit=10')
+  .then((res) => res.json())
+  .then((res) => {
+    listPost.value = res.posts;
+  });
 </script>
 
 <style scoped>
-  .unread-indicator {
-    background: var(--ion-color-primary);
+.unread-indicator {
+  background: var(--ion-color-primary);
 
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 
-    border-radius: 100%;
+  border-radius: 100%;
 
-    position: absolute;
+  position: absolute;
 
-    inset-inline-start: 12px;
-    top: 12px;
-  }
+  inset-inline-start: 12px;
+  top: 12px;
+}
 
-  .metadata-end-wrapper {
-    position: absolute;
+.metadata-end-wrapper {
+  position: absolute;
 
-    top: 10px;
-    inset-inline-end: 10px;
+  top: 10px;
+  inset-inline-end: 10px;
 
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
 
-  ion-label strong {
-    display: block;
+ion-label strong {
+  display: block;
 
-    max-width: calc(100% - 60px);
+  max-width: calc(100% - 60px);
 
-    overflow: hidden;
+  overflow: hidden;
 
-    text-overflow: ellipsis;
-  }
+  text-overflow: ellipsis;
+}
 
-  ion-label ion-note {
-    font-size: 0.9rem;
-  }
+ion-label ion-note {
+  font-size: 0.9rem;
+}
 </style>

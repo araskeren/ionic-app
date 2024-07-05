@@ -1,28 +1,28 @@
 <template>
   <ion-page>
     <ion-header :translucent="true">
-        <ion-toolbar>
+      <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button color="primary"></ion-menu-button>
+          <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
         <ion-title>List Post</ion-title>
-        </ion-toolbar>
+      </ion-toolbar>
     </ion-header>
     <ion-content color="light">
-        <list-component/>
+      <list-component />
     </ion-content>
   </ion-page>
 </template>
-  
+
 <script setup lang="ts">
-    import {
-      IonContent,
-      IonHeader,
-      IonTitle,
-      IonToolbar,
-      IonPage,
-      IonButtons,
-      IonMenuButton
-    } from '@ionic/vue';
-    import ListComponent from '@/components/page/ListComponent.vue';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonPage,
+  IonButtons,
+  IonMenuButton,
+} from '@ionic/vue';
+import ListComponent from '@/components/page/ListComponent.vue';
 </script>
