@@ -27,14 +27,11 @@
 </template>
 
 <script setup lang="ts">
-    import { User } from '@/interface/user';
-import { useAuthStore } from '@/store/auth';
+    import { useAuthStore } from '@/store/auth';
     import { IonPage,IonContent, IonCard, IonCardHeader, IonCardTitle,IonCardContent, IonItem, IonLabel, IonInput,IonButton,IonToast } from '@ionic/vue';
     import {ref} from 'vue'
-    import {UserInfo} from 'firebase/auth'
     const email = ref('emilys@mail.com')
     const password = ref('emilyspass')
-    const user = ref({} as UserInfo)
     const isOpen = ref(false);
     const message = ref('Login Success');
     const AUTH = useAuthStore()
@@ -44,7 +41,7 @@ import { useAuthStore } from '@/store/auth';
 
     function doLogin() {
         AUTH.login(email.value, password.value)
-        .then((res: UserInfo) => {
+        .then(() => {
             message.value = 'Login Success'
             setOpen(true)
             window.location.href = '/home'
@@ -59,7 +56,7 @@ import { useAuthStore } from '@/store/auth';
 
     function doLoginWithGoogle() {
         AUTH.loginWithGoogle()
-        .then((res: UserInfo) => {
+        .then(() => {
             message.value = 'Login Success'
             setOpen(true)
             window.location.href = '/home'

@@ -1,59 +1,59 @@
-import { useAuthStore } from "@/store/auth";
-import { createRouter, createWebHistory } from "@ionic/vue-router";
-import { RouteRecordRaw } from "vue-router";
+import { useAuthStore } from '@/store/auth';
+import { createRouter, createWebHistory } from '@ionic/vue-router';
+import { RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "",
-    redirect: "/home",
+    path: '',
+    redirect: '/home',
   },
   {
-    path: "/login",
-    component: () => import("@/views/LoginPage.vue"),
+    path: '/login',
+    component: () => import('@/views/LoginPage.vue'),
   },
   {
-    path: "/register",
-    component: () => import("@/views/RegisterPage.vue"),
+    path: '/register',
+    component: () => import('@/views/RegisterPage.vue'),
   },
   {
-    path: "/home",
-    component: () => import("@/views/HomePage.vue"),
+    path: '/home',
+    component: () => import('@/views/HomePage.vue'),
   },
   {
-    path: "/post",
-    component: () => import("@/views/page/PostPage.vue"),
+    path: '/post',
+    component: () => import('@/views/page/PostPage.vue'),
   },
   {
-    path: "/todo",
-    component: () => import("@/views/TodoPage.vue"),
+    path: '/todo',
+    component: () => import('@/views/TodoPage.vue'),
   },
   {
-    path: "/post/:id",
-    component: () => import("@/views/page/DetailPostPage.vue"),
+    path: '/post/:id',
+    component: () => import('@/views/page/DetailPostPage.vue'),
   },
   {
-    path: "/test",
-    component: () => import("@/views/TestPage.vue"),
+    path: '/test',
+    component: () => import('@/views/TestPage.vue'),
   },
   {
-    path: "/simple-calculator",
-    component: () => import("@/views/SimpleCalculatorPage.vue"),
+    path: '/simple-calculator',
+    component: () => import('@/views/SimpleCalculatorPage.vue'),
   },
   {
-    path: "/camera",
-    component: () => import("@/views/CameraPage.vue"),
+    path: '/camera',
+    component: () => import('@/views/CameraPage.vue'),
   },
   {
-    path: "/geo-location",
-    component: () => import("@/views/GeoLocationPage.vue"),
+    path: '/geo-location',
+    component: () => import('@/views/GeoLocationPage.vue'),
   },
   {
-    path: "/folder/:id",
-    component: () => import("@/views/FolderPage.vue"),
+    path: '/folder/:id',
+    component: () => import('@/views/FolderPage.vue'),
   },
   {
-    path: "/logout",
-    component: () => import("@/views/LogoutPage.vue"),
+    path: '/logout',
+    component: () => import('@/views/LogoutPage.vue'),
   },
 ];
 
@@ -63,7 +63,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path === "/login" || to.path === "/register") {
+  if (to.path === '/login' || to.path === '/register') {
     next();
   } else {
     if (checkLogin()) {
@@ -73,8 +73,8 @@ router.beforeEach((to, from, next) => {
 });
 
 const checkLogin = (): boolean => {
-  if (!localStorage.getItem("user")) {
-    router.push("/login");
+  if (!localStorage.getItem('user')) {
+    router.push('/login');
     return false;
   }
   return true;
